@@ -1,0 +1,495 @@
+@charset "utf-8";
+@import '~normalize.css'; /*reset css*/
+/*-----------------------------------------------------------------------------------
+
+	Css Name: yu-scss
+	Description: watanabeyu's style sheet
+	Author: WatanabeYu
+
+----------------------------------------------------------------------*/
+/* ----------------------------------------------------------------
+	libflexible
+-----------------------------------------------------------------*/
+//设计稿基准 iphone6
+$design : 750;
+$dpr : 2;
+$typeArea : 10rem;
+
+//视觉基准字号
+$baseViewSize: $design/10!default;//基于视觉稿横屏尺寸/100得出的基准font-size
+@function size($px) {
+  @return $px / $baseViewSize * 1rem;
+}
+
+//字号处理
+@for $i from 1 through 200 {
+  %fs-#{$i} { font-size: $i/$dpr*1px}
+  [data-dpr="2"] %fs-#{$i} { font-size: $i/$dpr*2px}
+  [data-dpr="3"] %fs-#{$i} { font-size: $i/$dpr*3px}
+}
+
+//基准栅栏
+$gap: size(15*$dpr)!default;
+
+
+/* ----------------------------------------------------------------
+	参数
+-----------------------------------------------------------------*/
+//定义字体
+$ff: 'PingFang SC','Microsoft Yahei','Droid Sans', Helvetica, Arial, sans-serif;
+/*定义色彩 LV越小(越高) 颜色越正*/
+$color_success:#09AA09!default;
+$color_info:#2dbbed!default;
+$color_primary:#3888FB!default;
+$color_warning: #ff8400 !default;
+$color_danger:#FA4D24!default;
+$color_sim: #333 #666 #a6a6a6 #ccc #ddd #ebebeb #f9f9f9 #f5f5f5 #f3f3f3 #fff!default;
+$color_link: nth($color_sim,1) nth($color_sim,2) !default;//第一个值为默认值，第二个鼠标滑过值
+/*下边距*/
+$mbs: (
+        mb-5:5px,
+        mb-10:10px,
+        mb-15:15px,
+        mb-20:20px,
+        mb-25:25px,
+        mb-30:30px,
+        mb-35:35px,
+        mb-40:40px,
+        mb-45:45px,
+        mb-50:50px,
+        mb-55:55px,
+        mb-60:60px,
+        mb-65:65px,
+        mb-70:70px,
+);
+@each $name, $size in $mbs {
+  .#{$name} {
+    margin-bottom: #{$size};
+  }
+}
+
+/* ----------------------------------------------------------------
+    功能样式
+-----------------------------------------------------------------*/
+//简单重置样式
+*{
+  box-sizing: border-box;
+}
+//清除列表样式
+ul,ol,li{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+//字号规范
+h1,h2,h3,h4,h5,h6{
+  color: nth($color_sim,1);
+  word-break: break-all;
+}
+
+h1{
+  font-size: 36px;
+}
+h2{
+  font-size: 30px;
+}
+h3{
+  font-size: 24px;
+}
+h4{
+  font-size: 18px;
+}
+h5,body,button,input,optgroup,select,textarea{
+  font-size: 14px;
+}
+h6{
+  font-size: 12px;
+}
+
+p{
+  line-height: 1.5;
+  color: nth($color_sim,2);
+  word-break: break-all;
+  &.muted{
+    color: nth($color_sim,3);
+  }
+}
+//弱化文字
+.muted{
+  color: nth($color_sim,3);
+}
+//强调文字
+em{
+  color: $color_danger;
+  font-weight: normal;
+  font-style: normal;
+}
+//加粗文字
+b{
+  color: nth($color_sim,1);
+  font-weight: bolder;
+}
+//超链接
+a{
+  color:nth($color_sim,2);
+  &,&:active,&:focus,&:visited,&:hover{
+    text-decoration: none;
+  }
+}
+//文字颜色
+.text-primary{
+  color: $color_primary;
+}
+.text-success{
+  color: $color_success;
+}
+.text-info{
+  color: $color_info;
+}
+.text-warning{
+  color: $color_warning;
+}
+.text-danger{
+  color: $color_danger;
+}
+//display属性
+.display-none{
+  display: none!important;
+}
+.display-inline-block{
+  display: inline-block!important;
+}
+.display-block{
+  display: block!important;
+}
+
+//bars
+.container,.container-fluid{
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+.row{
+  margin-right: -15px;
+  margin-left: -15px;
+}
+
+//float
+.clearfix{
+  &::after {
+    display: block;
+    content: "";
+    clear: both;
+  }
+  .l{
+    float: left;
+  }
+  .r{
+    float: right;
+  }
+}
+
+//table竖向居中
+.display-table{
+  display: table!important;
+  width: 100%;
+  &>*{
+    display: table-cell!important;
+    vertical-align: middle!important;
+    &.l,&.r{
+      float: none;
+    }
+  }
+}
+
+//iconfont svg
+.icon{
+  width: 1em; height: 1em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
+}
+
+/* ----------------------------------------------------------------
+	UI样式
+-----------------------------------------------------------------*/
+
+/*按钮*/
+.btn{
+  border: 1px solid transparent;
+  display: inline-block;
+  //line-height: 14px;
+  line-height: 1.5;
+  color: nth($color_sim,2);
+  background: nth($color_sim,6);
+  border-radius: 5px;
+  padding: 10px 15px;
+  margin: 0;
+  cursor: pointer;
+  text-align: center;
+  font-size: 14px;
+  //独占一行
+  &.btn-block{
+    width: 100%;
+    margin: 0 auto 15px;
+    display: block;
+  }
+  //大小
+  &.btn-sm{
+    padding: 3px 5px;
+    border-radius: 3px;
+  }
+  &.btn-md{
+    padding: 8px 15px;
+    border-radius: 5px;
+  }
+  &.btn-lg{
+    padding: 15px 30px;
+    border-radius: 8px;
+  }
+  //圆角大小
+  &.btn-br-no{
+    border-radius: 0;
+  }
+  &.btn-br-sm{
+    border-radius: 3px;
+  }
+  &.btn-br-md{
+    border-radius: 5px;
+  }
+  &.btn-br-lg{
+    border-radius: 8px;
+  }
+  //动作
+  &:hover:not(.unable),&:active:not(.unable),&:focus:not(.unable){
+    opacity: .8;
+  }
+  //颜色
+  $btn-styles:
+                  (btn-primary, $color_primary, nth($color_sim,10)),
+                  (btn-info, $color_info, nth($color_sim,10)),
+                  (btn-warning, $color_warning,nth($color_sim,10)),
+                  (btn-success,$color_success,nth($color_sim,10)),
+                  (btn-danger,$color_danger,nth($color_sim,10));
+
+  @each $style, $color-bg, $color-f in $btn-styles {
+    &.#{$style} {
+      background: $color-bg;
+      color: $color-f;
+      &:disabled,&[disabled],&.unable{
+        color: lighten($color-bg,10%);
+        cursor: not-allowed;
+        &:hover,&:active,&:focus{
+          opacity: 1;
+        }
+      }
+      &.btn-border{
+        border: 1px solid $color-bg;
+        color: $color-bg;
+        background:none;
+      }
+    }
+  }
+  //不可点击
+  &.unable,&:disabled,&[disabled]{
+    cursor: not-allowed;
+    border: 1px solid nth($color_sim,6)!important;
+    background: nth($color_sim,5)!important;
+    color:nth($color_sim,3)!important;
+    &:hover,&:active,&:focus{
+      opacity: 100;
+    }
+  }
+}
+/*按钮组*/
+//左右按钮紧靠的按钮组
+.btns{
+  @extend .clearfix;
+  .btn{
+    margin-left: -1px;
+    border-radius: 0;
+    float: left;
+    position: relative;
+    @extend .clearfix;
+    &:first-of-type{
+      margin-left: 0;
+      &.btn-br-sm{
+        border-top-left-radius: 3px;
+        border-bottom-left-radius: 3px;
+      }
+      &.btn-br-md{
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
+      }
+      &.btn-br-lg{
+        border-top-left-radius: 8px;
+        border-bottom-left-radius: 8px;
+      }
+    }
+    &:last-of-type{
+      &.btn-br-sm{
+        border-top-right-radius: 3px;
+        border-bottom-right-radius: 3px;
+      }
+      &.btn-br-md{
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+      }
+      &.btn-br-lg{
+        border-top-right-radius: 8px;
+        border-bottom-right-radius: 8px;
+      }
+    }
+  }
+}
+
+/*按钮组合，均等大小排列*/
+.btn-groups{
+  @extend .flex-box;
+  &>*{
+    padding: 0 10px;
+    &:first-child{
+      padding-left: 0;
+    }
+    &:last-child{
+      padding-right: 0;
+    }
+    @extend .flex-inner;
+    @extend .flex-1;
+  }
+}
+
+
+/* ----------------------------------------------------------------
+	定义代码片段 前缀hack已用autoprefixer-loader代替
+-----------------------------------------------------------------*/
+/*媒体查询*/
+@mixin media($res-min,$res-max){
+  @media only screen and ( min-device-width: $res-min ) and ( max-device-width: $res-max )
+  {
+    @content;
+  }
+}
+@mixin media-min($res-min){
+  @media only screen and ( min-device-width: $res-min )
+  {
+    @content;
+  }
+}
+@mixin media-max($res-max){
+  @media only screen and ( max-device-width: $res-max )
+  {
+    @content;
+  }
+}
+
+/*省略显示点点点,移动端通用*/
+@mixin ell($line:1){
+  text-overflow: -o-ellipsis-lastline;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: $line;
+  -webkit-box-orient: vertical;
+  word-break: break-all;
+}
+
+/*flex*/
+//定义父元素布局为盒模型
+.flex-box{
+  display: -webkit-box!important;
+  display: -webkit-flex!important;;
+  display: -ms-flexbox!important;;
+  display: flex!important;;
+  //盒模型垂直布局
+  &.flex-v {
+    -webkit-box-orient: vertical;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+  }
+}
+
+//flex子元素占据剩余的空间比例
+@mixin flex($num){
+  -webkit-box-flex: $num!important;;
+  -webkit-flex: $num!important;;
+  -webkit-flex: $num!important;;
+  flex: $num!important;;
+}
+.flex-inner{
+  //子元素比例
+  @for $i from 1 through 12 {
+    &.flex-#{$i} { -webkit-box-flex:$i;-webkit-flex:$i;-ms-flex:$i;flex:$i}
+  }
+  //子元素垂直居中
+  &.flex-align-center {
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+  }
+  //子元素水平居中
+  &.flex-pack-center {
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+  }
+  //子元素两端对齐
+  &.flex-pack-justify {
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+  }
+}
+
+/* ----------------------------------------------------------------
+	手机端仿原生样式
+-----------------------------------------------------------------*/
+
+@include media-max(768px){
+  /*去掉点击链接和文本框对象的半透明覆盖（iOS）或者虚框（Android）*/
+  a,h1,h2,h3,h4,h5,h6,span,b,i,input,textarea,select,label{
+    -webkit-tap-hightlight-color: rgba(0,0,0,0)!important;
+  }
+
+  /*禁用长按页面时弹出菜单（iOS下有效）*/
+  body{-webkit-touch-callout: none!important;}
+
+  /*消除原生外观，在iOS上加上这个属性才能给按钮和输入框自定义样式：*/
+  button,input,textarea,select,label{
+    -webkit-apperance: none!important;
+  }
+
+  /*点击效果去除高光*/
+  i,span,div,li{
+    -webkit-tap-highlight-color: rgba(0,0,0,0)!important;
+  }
+
+  /*动画开启GPU渲染*/
+  .action{
+    //transform: translateZ(0) 开启硬件加速
+    -webkit-transform: translateZ(0);
+    -moz-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    -o-transform: translateZ(0);
+    transform: translateZ(0);
+    //Chrome and Safari 闪烁
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -ms-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-perspective: 1000;
+    -moz-perspective: 1000;
+    -ms-perspective: 1000;
+    perspective: 1000;
+    //webkit 开启3D
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
