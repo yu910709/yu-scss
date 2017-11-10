@@ -1,6 +1,10 @@
 const path = require('path');
 const webpack = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');//构建时清理
+const CopyWebpackPlugin = require('copy-webpack-plugin');//copy静态文件
+const ExtractTextPlugin = require("extract-text-webpack-plugin");//分离样式表
+const extractCSS = new ExtractTextPlugin('yuScss.css');//导出css
+const extractSass = new ExtractTextPlugin('yuScss.css');//导出sass
 const autoprefixer = require('autoprefixer');//补全css各种hack
 
 module.exports = {
@@ -16,11 +20,19 @@ module.exports = {
         rules: [
             {
                 test: /\.css$/,
-                use: ['style-loader','css-loader','postcss-loader']
+                use: extractCSS.extract({
+                    fallback: 'style-loader',
+                    use: ['css-loader?importLoaders=1','postcss-loader'],
+                    publicPath: "../"
+                }),
             },
             {
                 test: /\.scss/i,
-                use: ['style-loader','css-loader', 'postcss-loader','sass-loader']
+                use: extractSass.extract({
+                    fallback: 'style-loader',
+                    use: ['css-loader','postcss-loader','sass-loader'],
+                    publicPath: "../"
+                })
             },
             {
                 test: /\.js$/,
@@ -52,5 +64,12 @@ module.exports = {
         }),
         //清理lib
         new CleanWebpackPlugin(['lib']),
+        //copy scss 到 lib
+        new CopyWebpackPlugin([{
+            from: __dirname + '/src/css/plugin.scss',
+            to:  __dirname + '/lib/yuScss.scss',
+        }]),
+        //样式导出配置
+        extractSass
     ]
 };
