@@ -10,9 +10,9 @@ document.querySelector('.ex-1').innerHTML = (`
     <div class="box">
     <h5 class="title">ex:自带效果</h5>
     <ul class="container-fluid">
-        <li class="col-lg-4 col-xs-4"><p class="text-red">hello</p></li>
-        <li class="col-lg-4 col-xs-4"><p class="text-olive">world</p></li>
-        <li class="col-lg-4 col-xs-4"><p class="text-orange">!!!</p></li>
+        <li class="col-lg-4 col-xs-4"><p class="yu-text-red">hello</p></li>
+        <li class="col-lg-4 col-xs-4"><p class="yu-text-olive">world</p></li>
+        <li class="col-lg-4 col-xs-4"><p class="yu-text-orange">!!!</p></li>
     </ul>
     </div>
     <div class="box">

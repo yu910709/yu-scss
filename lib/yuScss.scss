@@ -29,7 +29,7 @@ $color_pink           : #FF1493;
 $color_brown          : #A52A2A;
 $color_grey           : #A0A0A0;
 $color_black          : #000000;
-$color_sim: #2D2F33 #5A5E66 #878D99 #B4BCCC #D8DCE5 #DFE4ED #E6EBF5 #EDF2FC #f2f2f2 #fff!default;//depends on element ui
+$color_sim: #2D2F33 #5A5E66 #878D99 #B4BCCC #D8DCE5 #DFE4ED #E6EBF5 #EDF2FC #f2f2f2 #fff;//depends on element ui
 $color_link: nth($color_sim,1) nth($color_sim,2) !default;//第一个值为默认值，第二个鼠标滑过值
 /*栅栏*/
 $gap:15px;
@@ -197,12 +197,12 @@ $gap:15px;
   color: nth($color_sim,2);
   word-break: break-all;
   &.muted{
-    color: nth($color_sim,3);
+    color: nth($color_sim,4);
   }
 }
 //弱化文字
 .yu-muted{
-  color: nth($color_sim,3);
+  color: nth($color_sim,4);
 }
 //强调文字
 .yu-em{
@@ -321,6 +321,17 @@ $text-styles:
     top:0;
     left: 0;
   }
+}
+
+//旋转
+@keyframes rotating
+{
+  from{transform:rotate(0)}
+  to{transform:rotate(360deg)}
+}
+
+.yu-rotating{
+  animation: rotating 2s linear infinite;
 }
 
 /* ----------------------------------------------------------------

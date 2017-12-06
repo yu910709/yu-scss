@@ -1451,10 +1451,10 @@ template {
   color: #5A5E66;
   word-break: break-all; }
   .yu-p.muted {
-    color: #878D99; }
+    color: #B4BCCC; }
 
 .yu-muted {
-  color: #878D99; }
+  color: #B4BCCC; }
 
 .yu-em {
   color: #B03060;
@@ -1569,6 +1569,26 @@ template {
     z-index: 1;
     top: 0;
     left: 0; }
+
+@-webkit-keyframes rotating {
+  from {
+    -webkit-transform: rotate(0);
+            transform: rotate(0); }
+  to {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg); } }
+
+@keyframes rotating {
+  from {
+    -webkit-transform: rotate(0);
+            transform: rotate(0); }
+  to {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg); } }
+
+.yu-rotating {
+  -webkit-animation: rotating 2s linear infinite;
+          animation: rotating 2s linear infinite; }
 
 /* ----------------------------------------------------------------
 	按钮

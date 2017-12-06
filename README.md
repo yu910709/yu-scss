@@ -2,7 +2,7 @@
 
 this script can use [AMD](https://stackoverflow.com/questions/16521471/relation-between-commonjs-amd-and-requirejs) to inset stylesheets in you website,it has a personal [scss](http://sass-lang.com/) sheet and already mixed in [normalize.css](http://necolas.github.io/normalize.css/) & [bootstrap-grid](https://github.com/Hilzu/bootstrap-grid) 
 
-## Quick to start:
+## Quick to start
 
 install:     
 `npm install --save yu-scss `    

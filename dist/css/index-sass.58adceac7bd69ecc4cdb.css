@@ -1882,10 +1882,10 @@ template {
   color: #5A5E66;
   word-break: break-all; }
   .yu-p.muted {
-    color: #878D99; }
+    color: #B4BCCC; }
 
 .yu-muted {
-  color: #878D99; }
+  color: #B4BCCC; }
 
 .yu-em {
   color: #B03060;
@@ -2000,6 +2000,26 @@ template {
     z-index: 1;
     top: 0;
     left: 0; }
+
+@-webkit-keyframes rotating {
+  from {
+    -webkit-transform: rotate(0);
+            transform: rotate(0); }
+  to {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg); } }
+
+@keyframes rotating {
+  from {
+    -webkit-transform: rotate(0);
+            transform: rotate(0); }
+  to {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg); } }
+
+.yu-rotating {
+  -webkit-animation: rotating 2s linear infinite;
+          animation: rotating 2s linear infinite; }
 
 /* ----------------------------------------------------------------
 	按钮
@@ -2262,4 +2282,4 @@ template {
     -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0); } }
 
-/*# sourceMappingURL=index-sass.2e6275980fe1a3053e41.css.map*/
+/*# sourceMappingURL=index-sass.58adceac7bd69ecc4cdb.css.map*/
