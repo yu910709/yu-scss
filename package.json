@@ -1,6 +1,6 @@
 {
   "name": "yu-scss",
-  "version": "1.0.31",
+  "version": "1.0.32",
   "description": "common scss with normalize.css bootstrap-grid & you can add fontawesome iconfont bootstrap and so on with config in AMD",
   "main": "index.js",
   "scripts": {
